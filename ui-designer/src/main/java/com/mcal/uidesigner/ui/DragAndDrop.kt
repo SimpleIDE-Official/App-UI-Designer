@@ -1,5 +1,6 @@
 package com.mcal.uidesigner.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -10,6 +11,7 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onGloballyPositioned
+import com.mcal.uidesigner.ui.model.ComposeWidget
 
 fun Modifier.dragSource(
     widget: ComposeWidget,
@@ -30,25 +32,25 @@ fun Modifier.dragSource(
 }
 
 fun Modifier.dropTarget(
-    onDrop: () -> Unit
+    viewModel: DragAndDropViewModel,
+    onDrop: (ComposeWidget) -> Unit
 ): Modifier = composed {
-    var isHovered by remember { mutableStateOf(false) }
     var bounds by remember { mutableStateOf(Rect.Zero) }
+    val isHovered = viewModel.isDragging.value && bounds.contains(viewModel.dragPosition.value)
 
     this
         .onGloballyPositioned {
             bounds = it.getBoundsInRoot()
         }
+        .background(if (isHovered) androidx.compose.ui.graphics.Color.LightGray else androidx.compose.ui.graphics.Color.Transparent)
         .pointerInput(Unit) {
             awaitPointerEventScope {
                 while (true) {
                     val event = awaitPointerEvent()
-                    // This is a simplified check, a real implementation would need to
-                    // check the drag position from the ViewModel
-                    isHovered = event.changes.any { it.pressed && bounds.contains(it.position) }
                     if (!event.changes.any { it.pressed } && isHovered) {
-                        onDrop()
-                        isHovered = false
+                        viewModel.draggedWidget.value?.let {
+                            onDrop(it)
+                        }
                     }
                 }
             }

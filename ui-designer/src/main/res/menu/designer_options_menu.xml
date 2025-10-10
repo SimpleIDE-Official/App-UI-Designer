@@ -38,4 +38,8 @@
         android:id="@+id/designerMenuShare"
         android:title="@string/ui_design_share_xml"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/designerMenuCompose"
+        android:title="@string/compose_designer"
+        app:showAsAction="never" />
 </menu>

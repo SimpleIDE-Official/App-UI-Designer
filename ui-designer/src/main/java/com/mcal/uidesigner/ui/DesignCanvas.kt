@@ -13,14 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import java.util.UUID
-
-data class DesignNode(
-    val id: String = UUID.randomUUID().toString(),
-    val widget: ComposeWidget,
-    val attributes: Map<String, String> = emptyMap(),
-    val children: List<DesignNode> = emptyList()
-)
+import com.mcal.uidesigner.ui.model.DesignNode
 
 @Composable
 fun DesignCanvas(
@@ -33,11 +26,12 @@ fun DesignCanvas(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .dropTarget {
-                dragAndDropViewModel.draggedWidget.value?.let {
-                    designCanvasViewModel.addWidget(it)
+            .dropTarget(
+                viewModel = dragAndDropViewModel,
+                onDrop = { widget ->
+                    designCanvasViewModel.addWidget(widget)
                 }
-            }
+            )
     ) {
         if (rootNode == null) {
             Box(modifier = Modifier.padding(16.dp)) {
@@ -69,19 +63,6 @@ fun RenderNode(
             .clickable { onNodeSelected(node) }
             .padding(8.dp)
     ) {
-        Column {
-            Text(text = node.widget.name)
-            if (node.children.isNotEmpty()) {
-                Column(modifier = Modifier.padding(start = 16.dp)) {
-                    node.children.forEach { child ->
-                        RenderNode(
-                            node = child,
-                            selectedNode = selectedNode,
-                            onNodeSelected = onNodeSelected
-                        )
-                    }
-                }
-            }
-        }
+        WidgetRenderer(node = node)
     }
 }

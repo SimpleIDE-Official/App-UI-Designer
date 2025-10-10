@@ -3,6 +3,7 @@ package com.mcal.uidesigner.ui
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.geometry.Offset
 import androidx.lifecycle.ViewModel
+import com.mcal.uidesigner.ui.model.ComposeWidget
 
 class DragAndDropViewModel : ViewModel() {
     val isDragging = mutableStateOf(false)

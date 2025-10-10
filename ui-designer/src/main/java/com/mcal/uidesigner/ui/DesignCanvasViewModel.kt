@@ -2,6 +2,8 @@ package com.mcal.uidesigner.ui
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.mcal.uidesigner.ui.model.ComposeWidget
+import com.mcal.uidesigner.ui.model.DesignNode
 
 class DesignCanvasViewModel : ViewModel() {
     val root = mutableStateOf<DesignNode?>(null)

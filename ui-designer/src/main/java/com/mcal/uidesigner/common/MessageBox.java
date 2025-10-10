@@ -218,7 +218,7 @@ public abstract class MessageBox {
                 }
                 AlertDialog dialog = builder.create();
                 dialog.setOnShowListener(dialog2 -> {
-                    ((InputMethodManager) activity2.getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
+                    ((InputMethodManager) activity2.getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(input, 1);
                     input.selectAll();
                 });
                 return dialog;
