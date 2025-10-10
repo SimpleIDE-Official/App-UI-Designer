@@ -136,7 +136,7 @@ public class AndroidHelper {
     }
 
     public static boolean isMouseButtonEvent(@NonNull MotionEvent event) {
-        if (event.getToolType(0) == 3) {
+        if (event.getToolType(0) == MotionEvent.TOOL_TYPE_MOUSE) {
             return true;
         }
         switch (event.getSource()) {

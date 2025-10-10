@@ -11,6 +11,7 @@ dependencyResolutionManagement {
     def latestFastAdapterRelease = "5.7.0"
     def smali_version = "3.0.3"
     def text_edit = "0.21.0"
+    def compose_version = "1.5.1"
 
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -30,8 +31,8 @@ dependencyResolutionManagement {
             library('core', 'androidx.core:core-ktx:1.10.0')
             library('appcompat', 'androidx.appcompat:appcompat:1.6.1')
             library('preference', 'androidx.preference:preference-ktx:1.2.0')
-            library('mvvm_vm', "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-            library('mvvm_ld', "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+            library('mvvm-vm', "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+            library('mvvm-ld', "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
             library('lifecycle', "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
             library('fragment', "androidx.navigation:navigation-fragment-ktx:2.5.3")
             library('navigation', "androidx.navigation:navigation-ui-ktx:2.5.3")
@@ -43,6 +44,12 @@ dependencyResolutionManagement {
             library('preferences', "androidx.datastore:datastore-preferences:1.0.0")
             library('preferences_core', "androidx.datastore:datastore-preferences-core:1.0.0")
             library('swiperefreshlayout', "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+            library('compose-ui', "androidx.compose.ui:ui:${compose_version}")
+            library('compose-material', "androidx.compose.material:material:${compose_version}")
+            library('compose-tooling', "androidx.compose.ui:ui-tooling:${compose_version}")
+            library('compose-runtime', "androidx.compose.runtime:runtime:${compose_version}")
+            library('compose-activity', "androidx.activity:activity-compose:1.7.2")
+            library('lifecycle-viewmodel-compose', "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
         }
 
         google {
@@ -63,6 +70,7 @@ dependencyResolutionManagement {
         }
 
         misc {
+            library('junit', 'junit:junit:4.13.2')
             library('leaks', 'com.squareup.leakcanary:leakcanary-android:2.10')
             library('commons_cli', 'commons-cli:commons-cli:1.5.0')
             library('commons_lang', "org.apache.commons:commons-lang3:3.12.0")

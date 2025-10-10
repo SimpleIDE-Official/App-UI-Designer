@@ -27,6 +27,12 @@ android {
         sourceCompatibility project.sourceCompatibility.toInteger()
         targetCompatibility project.targetCompatibility.toInteger()
     }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion project.compose_version
+    }
     namespace 'com.mcal.uidesigner'
 }
 
@@ -41,6 +47,12 @@ dependencies {
     implementation jetpack.material
     implementation jetpack.cardview
     implementation jetpack.constraint
+    implementation(jetpack.compose.ui)
+    implementation(jetpack.compose.material)
+    implementation(jetpack.compose.tooling)
+    implementation(jetpack.compose.runtime)
+    implementation(jetpack.compose.activity)
+    implementation(jetpack.lifecycle.viewmodel.compose)
 
     implementation misc.annotations
 }
