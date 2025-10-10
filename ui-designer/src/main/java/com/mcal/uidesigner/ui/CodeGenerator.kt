@@ -35,7 +35,7 @@ class CodeGenerator {
         getWidgetSpecificProps(node, attributes, indent, stringBuilder)
 
         attributes.forEach { (key, value) ->
-            val formattedValue = formatValue(value)
+            val formattedValue = formatValue(value, imports)
             stringBuilder.append("$indent    $key = $formattedValue,\n")
         }
 
@@ -89,12 +89,19 @@ class CodeGenerator {
         }
     }
 
-    private fun formatValue(value: String): String {
+    private fun formatValue(value: String, imports: MutableSet<String>): String {
         return when {
             value.toBooleanStrictOrNull() != null -> value
             value.toIntOrNull() != null -> value
             value.toFloatOrNull() != null -> "${value}f"
-            value.startsWith("Color.") -> value
+            value.startsWith("Color.") -> {
+                imports.add("import androidx.compose.ui.graphics.Color")
+                value
+            }
+            value.startsWith("Icons.") -> {
+                imports.add("import androidx.compose.material.icons.Icons")
+                value
+            }
             else -> "\"$value\""
         }
     }

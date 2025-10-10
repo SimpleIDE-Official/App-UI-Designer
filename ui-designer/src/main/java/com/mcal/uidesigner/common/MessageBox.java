@@ -407,7 +407,7 @@ public abstract class MessageBox {
                 }
                 dialog[0] = builder.create();
                 dialog[0].setOnShowListener(dialog2 -> {
-                    ((InputMethodManager) activity2.getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(input, 1);
+                    ((InputMethodManager) activity2.getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
                     input.selectAll();
                 });
                 input.setText(oldValue + "");
