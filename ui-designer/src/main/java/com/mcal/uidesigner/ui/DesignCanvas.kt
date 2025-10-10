@@ -4,6 +4,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,20 +23,33 @@ data class DesignNode(
 )
 
 @Composable
-fun DesignCanvas(viewModel: DesignCanvasViewModel = viewModel()) {
-    val rootNode by viewModel.root
-    val selectedNode by viewModel.selectedNode
+fun DesignCanvas(
+    designCanvasViewModel: DesignCanvasViewModel = viewModel(),
+    dragAndDropViewModel: DragAndDropViewModel = viewModel()
+) {
+    val rootNode by designCanvasViewModel.root
+    val selectedNode by designCanvasViewModel.selectedNode
 
-    if (rootNode == null) {
-        Box(modifier = Modifier.padding(16.dp)) {
-            Text("Design Canvas")
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .dropTarget {
+                dragAndDropViewModel.draggedWidget.value?.let {
+                    designCanvasViewModel.addWidget(it)
+                }
+            }
+    ) {
+        if (rootNode == null) {
+            Box(modifier = Modifier.padding(16.dp)) {
+                Text("Design Canvas")
+            }
+        } else {
+            RenderNode(
+                node = rootNode!!,
+                selectedNode = selectedNode,
+                onNodeSelected = { designCanvasViewModel.selectNode(it) }
+            )
         }
-    } else {
-        RenderNode(
-            node = rootNode!!,
-            selectedNode = selectedNode,
-            onNodeSelected = { viewModel.selectNode(it) }
-        )
     }
 }
 

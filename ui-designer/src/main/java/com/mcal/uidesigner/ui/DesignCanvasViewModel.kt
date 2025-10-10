@@ -49,4 +49,23 @@ class DesignCanvasViewModel : ViewModel() {
     fun selectNode(node: DesignNode) {
         selectedNode.value = node
     }
+
+    fun updateAttribute(node: DesignNode, key: String, value: String) {
+        root.value?.let {
+            root.value = updateNodeAttribute(it, node.id, key, value)
+        }
+    }
+
+    private fun updateNodeAttribute(currentNode: DesignNode, nodeId: String, key: String, value: String): DesignNode {
+        if (currentNode.id == nodeId) {
+            val newAttributes = currentNode.attributes.toMutableMap()
+            newAttributes[key] = value
+            val updatedNode = currentNode.copy(attributes = newAttributes)
+            if (selectedNode.value?.id == updatedNode.id) {
+                selectedNode.value = updatedNode
+            }
+            return updatedNode
+        }
+        return currentNode.copy(children = currentNode.children.map { updateNodeAttribute(it, nodeId, key, value) })
+    }
 }
