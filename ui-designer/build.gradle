@@ -48,11 +48,12 @@ dependencies {
     implementation jetpack.cardview
     implementation jetpack.constraint
     implementation(jetpack.compose.ui)
-    implementation(jetpack.compose.material)
+    implementation(jetpack.compose.material3)
     implementation(jetpack.compose.tooling)
     implementation(jetpack.compose.runtime)
     implementation(jetpack.compose.activity)
     implementation(jetpack.lifecycle.viewmodel.compose)
+    implementation(jetpack.compose.icons.extended)
 
     implementation misc.annotations
 }

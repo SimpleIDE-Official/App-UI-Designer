@@ -1,69 +1,53 @@
 package com.mcal.uidesigner.ui
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+
 val widgets = listOf(
-    ComposeWidget("AppCompatButton", "Widget X", "androidx.appcompat.widget.AppCompatButton", mapOf("android:text" to "AppCompatButton")),
-    ComposeWidget("AppCompatImageButton", "Widget X", "androidx.appcompat.widget.AppCompatImageButton", mapOf("style" to "?android:attr/buttonBarButtonStyle", "android:src" to "@android:drawable/ic_menu_close_clear_cancel")),
-    ComposeWidget("AppCompatToggleButton", "Widget X", "androidx.appcompat.widget.AppCompatToggleButton", mapOf("android:src" to "@android:drawable/ic_menu_close_clear_cancel")),
-    ComposeWidget("AppCompatSwitch", "Widget X", "androidx.appcompat.widget.SwitchCompat"),
-    ComposeWidget("AppCompatCheckBox", "Widget X", "androidx.appcompat.widget.AppCompatCheckBox"),
-    ComposeWidget("AppCompatRadioButton", "Widget X", "androidx.appcompat.widget.AppCompatRadioButton"),
-    ComposeWidget("AppCompatSeekBar", "Widget X", "androidx.appcompat.widget.AppCompatSeekBar"),
-    ComposeWidget("AppCompatTextView", "View X", "androidx.appcompat.widget.AppCompatTextView", mapOf("android:text" to "Text")),
-    ComposeWidget("AppCompatImageView", "View X", "androidx.appcompat.widget.AppCompatImageView", mapOf("android:src" to "@android:drawable/ic_delete")),
-    ComposeWidget("ContentLoadingProgressBar", "View X", "androidx.core.widget.ContentLoadingProgressBar"),
-    ComposeWidget("AppCompatEditText", "Text Field X", "androidx.appcompat.widget.AppCompatEditText", mapOf("android:ems" to "10")),
-    ComposeWidget("Button", "Widget", "Button", mapOf("android:text" to "Button")),
-    ComposeWidget("Button (small)", "Widget", "Button", mapOf("style" to "?android:attr/buttonStyleSmall", "android:text" to "Small Button")),
-    ComposeWidget("ImageButton", "Widget", "ImageButton", mapOf("android:src" to "@android:drawable/ic_menu_close_clear_cancel")),
-    ComposeWidget("Bar Button", "Widget", "Button", mapOf("style" to "?android:attr/buttonBarButtonStyle", "android:text" to "Bar Button")),
-    ComposeWidget("BarImageButton", "Widget", "ImageButton", mapOf("style" to "?android:attr/buttonBarButtonStyle", "android:src" to "@android:drawable/ic_menu_close_clear_cancel")),
-    ComposeWidget("ToggleButton", "Widget", "ToggleButton"),
-    ComposeWidget("Switch", "Widget", "Switch"),
-    ComposeWidget("CheckBox", "Widget", "CheckBox"),
-    ComposeWidget("RadioButton", "Widget", "RadioButton"),
-    ComposeWidget("SeekBar", "Widget", "SeekBar"),
-    ComposeWidget("TextView", "View", "TextView", mapOf("android:text" to "Text")),
-    ComposeWidget("TextView (small)", "View", "TextView", mapOf("android:textAppearance" to "?android:attr/textAppearanceSmall", "android:text" to "Small Text")),
-    ComposeWidget("TextView (medium)", "View", "TextView", mapOf("android:textAppearance" to "?android:attr/textAppearanceMedium", "android:text" to "Medium Text")),
-    ComposeWidget("TextView (large)", "View", "TextView", mapOf("android:textAppearance" to "?android:attr/textAppearanceLarge", "android:text" to "Large Text")),
-    ComposeWidget("Vertical Divider", "View", "View", mapOf("android:background" to "?android:attr/dividerVertical", "android:layout_height" to "1dp", "android:layout_width" to "match_parent")),
-    ComposeWidget("Horizontal Divider", "View", "View", mapOf("android:background" to "?android:attr/dividerHorizontal", "android:layout_width" to "1dp", "android:layout_height" to "match_parent")),
-    ComposeWidget("ImageView", "View", "ImageView", mapOf("android:src" to "@android:drawable/ic_delete")),
-    ComposeWidget("ProgressBar", "View", "ProgressBar"),
-    ComposeWidget("ProgressBar (large)", "View", "ProgressBar", mapOf("style" to "?android:attr/progressBarStyleLarge")),
-    ComposeWidget("ProgressBar (horizontal)", "View", "ProgressBar", mapOf("style" to "?android:attr/progressBarStyleHorizontal")),
-    ComposeWidget("EditText", "Text Field", "EditText", mapOf("android:ems" to "10")),
-    ComposeWidget("EditText (multiline)", "Text Field", "EditText", mapOf("android:inputType" to "textMultiLine", "android:ems" to "10")),
-    ComposeWidget("EditText (password)", "Text Field", "EditText", mapOf("android:inputType" to "textPassword", "android:ems" to "10")),
-    ComposeWidget("EditText (number password)", "Text Field", "EditText", mapOf("android:inputType" to "numberPassword", "android:ems" to "10")),
-    ComposeWidget("EditText (email)", "Text Field", "EditText", mapOf("android:inputType" to "textEmailAddress", "android:ems" to "10")),
-    ComposeWidget("EditText (name)", "Text Field", "EditText", mapOf("android:inputType" to "textPersonName", "android:ems" to "10")),
-    ComposeWidget("EditText (phone)", "Text Field", "EditText", mapOf("android:inputType" to "phone", "android:ems" to "10")),
-    ComposeWidget("EditText (address)", "Text Field", "EditText", mapOf("android:inputType" to "textPostalAddress", "android:ems" to "10")),
-    ComposeWidget("EditText (time)", "Text Field", "EditText", mapOf("android:inputType" to "time", "android:ems" to "10")),
-    ComposeWidget("EditText (date)", "Text Field", "EditText", mapOf("android:inputType" to "date", "android:ems" to "10")),
-    ComposeWidget("EditText (number)", "Text Field", "EditText", mapOf("android:inputType" to "number", "android:ems" to "10")),
-    ComposeWidget("EditText (signed number)", "Text Field", "EditText", mapOf("android:inputType" to "numberSigned", "android:ems" to "10")),
-    ComposeWidget("EditText (decimal)", "Text Field", "EditText", mapOf("android:inputType" to "numberDecimal", "android:ems" to "10")),
-    ComposeWidget("DatePicker", "Advanced Widget", "DatePicker"),
-    ComposeWidget("TimePicker", "Advanced Widget", "TimePicker"),
-    ComposeWidget("NumberPicker", "Advanced Widget", "NumberPicker"),
-    ComposeWidget("RatingBar", "Advanced Widget", "RatingBar"),
-    ComposeWidget("List View", "Adapter View", "ListView"),
-    ComposeWidget("Expandable List View", "Adapter View", "ExpandableListView"),
-    ComposeWidget("Spinner", "Adapter View", "Spinner"),
-    ComposeWidget("RelativeLayout", "Layout", "RelativeLayout"),
-    ComposeWidget("LinearLayout (horizontal)", "Layout", "LinearLayout", mapOf("android:orientation" to "horizontal")),
-    ComposeWidget("LinearLayout (vertical)", "Layout", "LinearLayout", mapOf("android:orientation" to "vertical")),
-    ComposeWidget("ScrollView", "Scroll View", "ScrollView"),
-    ComposeWidget("HorizontalScrollView", "Scroll View", "HorizontalScrollView"),
-    ComposeWidget("Button Bar", "Advanced Layout", "LinearLayout", mapOf("style" to "?android:attr/buttonBarStyle", "android:orientation" to "horizontal")),
-    ComposeWidget("GridLayout", "Advanced Layout", "GridLayout", mapOf("rowCount" to "1", "columnCount" to "1")),
-    ComposeWidget("FrameLayout", "Advanced Layout", "FrameLayout"),
-    ComposeWidget("RadioGroup", "Advanced Layout", "RadioGroup", mapOf("android:orientation" to "vertical")),
-    ComposeWidget("TableLayout", "Advanced Layout", "TableLayout"),
-    ComposeWidget("TableRow", "Advanced Layout", "TableRow"),
-    ComposeWidget("AbsoluteLayout", "Advanced Layout", "AbsoluteLayout"),
-    ComposeWidget("Drawer Layout", "App Layout", "android.support.v4.widget.DrawerLayout"),
-    ComposeWidget("View Pager", "App Layout", "android.support.v4.widget.ViewPager")
+    // Buttons
+    ComposeWidget("Button", "Buttons", "Button", mapOf("text" to "Button"), Icons.Filled.RadioButtonChecked),
+    ComposeWidget("Elevated Button", "Buttons", "ElevatedButton", mapOf("text" to "Elevated Button"), Icons.Filled.RadioButtonChecked),
+    ComposeWidget("Filled Tonal Button", "Buttons", "FilledTonalButton", mapOf("text" to "Filled Tonal Button"), Icons.Filled.RadioButtonChecked),
+    ComposeWidget("Outlined Button", "Buttons", "OutlinedButton", mapOf("text" to "Outlined Button"), Icons.Filled.RadioButtonUnchecked),
+    ComposeWidget("Text Button", "Buttons", "TextButton", mapOf("text" to "Text Button"), Icons.Filled.TextFields),
+    ComposeWidget("Icon Button", "Buttons", "IconButton", icon = Icons.Filled.Favorite),
+    ComposeWidget("Floating Action Button", "Buttons", "FloatingActionButton", icon = Icons.Filled.Add),
+    ComposeWidget("Extended Floating Action Button", "Buttons", "ExtendedFloatingActionButton", mapOf("text" to "Extended FAB"), icon = Icons.Filled.Add),
+
+    // Text Fields
+    ComposeWidget("Text Field", "Text Fields", "TextField", mapOf("label" to "Label"), Icons.Filled.TextFields),
+    ComposeWidget("Outlined Text Field", "Text Fields", "OutlinedTextField", mapOf("label" to "Label"), Icons.Filled.TextFields),
+
+    // Selection
+    ComposeWidget("Checkbox", "Selection", "Checkbox", icon = Icons.Filled.CheckBox),
+    ComposeWidget("Radio Button", "Selection", "RadioButton", icon = Icons.Filled.RadioButtonChecked),
+    ComposeWidget("Switch", "Selection", "Switch", icon = Icons.Filled.ToggleOn),
+    ComposeWidget("Slider", "Selection", "Slider", icon = Icons.Filled.ShowChart),
+
+    // Progress Indicators
+    ComposeWidget("Circular Progress", "Progress", "CircularProgressIndicator", icon = Icons.Filled.Refresh),
+    ComposeWidget("Linear Progress", "Progress", "LinearProgressIndicator", icon = Icons.Filled.ShowChart),
+
+    // Containers
+    ComposeWidget("Card", "Containers", "Card"),
+    ComposeWidget("Elevated Card", "Containers", "ElevatedCard"),
+    ComposeWidget("Outlined Card", "Containers", "OutlinedCard"),
+    ComposeWidget("Box", "Containers", "Box", icon = Icons.Filled.CheckBoxOutlineBlank),
+    ComposeWidget("Column", "Containers", "Column", icon = Icons.Filled.ViewStream),
+    ComposeWidget("Row", "Containers", "Row", icon = Icons.Filled.ViewColumn),
+    ComposeWidget("Lazy Column", "Containers", "LazyColumn", icon = Icons.Filled.ViewList),
+    ComposeWidget("Lazy Row", "Containers", "LazyRow", icon = Icons.Filled.ViewModule),
+
+    // Navigation
+    ComposeWidget("Navigation Bar", "Navigation", "NavigationBar"),
+    ComposeWidget("Navigation Rail", "Navigation", "NavigationRail"),
+    ComposeWidget("Navigation Drawer", "Navigation", "ModalNavigationDrawer"),
+    ComposeWidget("Bottom App Bar", "Navigation", "BottomAppBar"),
+    ComposeWidget("Top App Bar", "Navigation", "TopAppBar"),
+
+    // Other
+    ComposeWidget("Text", "Other", "Text", mapOf("text" to "Text"), Icons.Filled.TextFields),
+    ComposeWidget("Icon", "Other", "Icon", icon = Icons.Filled.Image),
+    ComposeWidget("Image", "Other", "Image"),
+    ComposeWidget("Divider", "Other", "Divider")
 )

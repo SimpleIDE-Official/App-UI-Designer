@@ -45,11 +45,12 @@ dependencyResolutionManagement {
             library('preferences_core', "androidx.datastore:datastore-preferences-core:1.0.0")
             library('swiperefreshlayout', "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
             library('compose-ui', "androidx.compose.ui:ui:${compose_version}")
-            library('compose-material', "androidx.compose.material:material:${compose_version}")
+            library('compose-material3', "androidx.compose.material3:material3:1.1.2")
             library('compose-tooling', "androidx.compose.ui:ui-tooling:${compose_version}")
             library('compose-runtime', "androidx.compose.runtime:runtime:${compose_version}")
             library('compose-activity', "androidx.activity:activity-compose:1.7.2")
             library('lifecycle-viewmodel-compose', "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+            library('compose-icons-extended', "androidx.compose.material:material-icons-extended:1.5.1")
         }
 
         google {
