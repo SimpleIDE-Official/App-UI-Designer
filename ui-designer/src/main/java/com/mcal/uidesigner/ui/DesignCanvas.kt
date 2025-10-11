@@ -17,21 +17,13 @@ import com.mcal.uidesigner.ui.model.DesignNode
 
 @Composable
 fun DesignCanvas(
-    designCanvasViewModel: DesignCanvasViewModel = viewModel(),
-    dragAndDropViewModel: DragAndDropViewModel = viewModel()
+    designCanvasViewModel: DesignCanvasViewModel = viewModel()
 ) {
     val rootNode by designCanvasViewModel.root
     val selectedNode by designCanvasViewModel.selectedNode
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .dropTarget(
-                viewModel = dragAndDropViewModel,
-                onDrop = { widget ->
-                    designCanvasViewModel.addWidget(widget)
-                }
-            )
+        modifier = Modifier.fillMaxSize()
     ) {
         if (rootNode == null) {
             Box(modifier = Modifier.padding(16.dp)) {

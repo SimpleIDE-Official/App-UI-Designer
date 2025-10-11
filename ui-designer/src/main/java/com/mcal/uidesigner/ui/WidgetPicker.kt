@@ -19,7 +19,7 @@ import com.mcal.uidesigner.ui.model.ComposeWidget
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun WidgetPicker(dragAndDropViewModel: DragAndDropViewModel = viewModel()) {
+fun WidgetPicker() {
     val grouped = widgets.groupBy { it.category }
 
     LazyColumn {
@@ -39,7 +39,7 @@ fun WidgetPicker(dragAndDropViewModel: DragAndDropViewModel = viewModel()) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .dragSource(widget, dragAndDropViewModel)
+                        .draggable(widget)
                         .padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {

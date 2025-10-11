@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Code
@@ -15,105 +14,84 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mcal.uidesigner.R
-import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainLayout(
-    designCanvasViewModel: DesignCanvasViewModel = viewModel(),
-    dragAndDropViewModel: DragAndDropViewModel = viewModel()
+    designCanvasViewModel: DesignCanvasViewModel = viewModel()
 ) {
     val selectedNode by designCanvasViewModel.selectedNode
-    val isDragging by dragAndDropViewModel.isDragging
-    val draggedWidget by dragAndDropViewModel.draggedWidget
-    val dragPosition by dragAndDropViewModel.dragPosition
     var showCodeDialog by remember { mutableStateOf(false) }
     var generatedCode by remember { mutableStateOf("") }
+    val dragState = remember { DragState() }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = { Text(stringResource(R.string.app_name)) },
-                    actions = {
-                        IconButton(onClick = {
-                            designCanvasViewModel.root.value?.let {
-                                generatedCode = CodeGenerator().generateCode(it)
-                                showCodeDialog = true
+    CompositionLocalProvider(LocalDragState provides dragState) {
+        DragLayer(modifier = Modifier.fillMaxSize()) {
+            Scaffold(
+                topBar = {
+                    TopAppBar(
+                        title = { Text(stringResource(R.string.app_name)) },
+                        actions = {
+                            IconButton(onClick = {
+                                designCanvasViewModel.root.value?.let {
+                                generatedCode = AdvancedCodeGenerator().generateCode(it)
+                                    showCodeDialog = true
+                                }
+                            }) {
+                                Icon(Icons.Default.Code, contentDescription = "Generate Code")
                             }
-                        }) {
-                            Icon(Icons.Default.Code, contentDescription = "Generate Code")
-                        }
-                        if (selectedNode != null) {
-                            IconButton(onClick = { designCanvasViewModel.removeWidget(selectedNode!!) }) {
-                                Icon(Icons.Default.Delete, contentDescription = "Delete")
+                            if (selectedNode != null) {
+                                IconButton(onClick = { designCanvasViewModel.removeWidget(selectedNode!!) }) {
+                                    Icon(Icons.Default.Delete, contentDescription = "Delete")
+                                }
                             }
                         }
-                    }
-                )
-            }
-        ) { innerPadding ->
-            Row(
-                modifier = Modifier
-                    .padding(innerPadding)
-                    .fillMaxSize(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Box(
-                    modifier = Modifier.weight(1f)
-                ) {
-                    WidgetPicker(dragAndDropViewModel = dragAndDropViewModel)
-                }
-                Box(
-                    modifier = Modifier.weight(2f)
-                ) {
-                    DesignCanvas(
-                        designCanvasViewModel = designCanvasViewModel,
-                        dragAndDropViewModel = dragAndDropViewModel
                     )
                 }
-                Box(
-                    modifier = Modifier.weight(1f),
-                    contentAlignment = Alignment.Center
-                ) {
-                    PropertyEditor(
-                        selectedNode = selectedNode,
-                        onAttributeChange = designCanvasViewModel::updateAttribute
-                    )
-                }
-            }
-        }
-
-        if (isDragging) {
-            draggedWidget?.let { widget ->
-                Box(
+            ) { innerPadding ->
+                Row(
                     modifier = Modifier
-                        .offset { IntOffset(dragPosition.x.roundToInt(), dragPosition.y.roundToInt()) }
+                        .padding(innerPadding)
+                        .fillMaxSize(),
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text(
-                        text = widget.name,
-                        color = Color.White,
-                        modifier = Modifier.padding(8.dp)
-                    )
+                    Box(
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        WidgetPicker()
+                    }
+                    Box(
+                        modifier = Modifier
+                            .weight(2f)
+                            .dropTarget { widget ->
+                                designCanvasViewModel.addWidget(widget)
+                            }
+                    ) {
+                        DesignCanvas(
+                            designCanvasViewModel = designCanvasViewModel
+                        )
+                    }
+                    Box(
+                        modifier = Modifier.weight(1f),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        AdvancedPropertyEditor(
+                            selectedNode = selectedNode,
+                            onAttributeChange = designCanvasViewModel::updateAttribute
+                        )
+                    }
                 }
             }
-        }
 
-        if (showCodeDialog) {
-            CodeDialog(code = generatedCode, onDismiss = { showCodeDialog = false })
+            if (showCodeDialog) {
+                CodeDialog(code = generatedCode, onDismiss = { showCodeDialog = false })
+            }
         }
     }
 }

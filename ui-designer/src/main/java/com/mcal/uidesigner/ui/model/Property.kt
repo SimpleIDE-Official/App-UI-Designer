@@ -5,11 +5,14 @@ enum class PropertyType {
     Int,
     Float,
     Boolean,
-    Color
+    Color,
+    Size,
+    Enum
 }
 
-data class Property(
+data class Property<T>(
     val name: String,
     val type: PropertyType,
-    var value: Any
+    var value: T,
+    val options: List<String> = emptyList()
 )
