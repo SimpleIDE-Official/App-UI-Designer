@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">UI Designer</string>
     <string name="dialog_cancel">Отмена</string>
     <string name="dialog_community_ask">Обратиться к сообществу</string>
     <string name="dialog_community_continue">Продолжить</string>
@@ -56,4 +57,5 @@
     <string name="other_">other...</string>
     <string name="add__">add...</string>
     <string name="fixed_size_">Fixed size...</string>
+    <string name="compose_designer">Compose Designer</string>
 </resources>

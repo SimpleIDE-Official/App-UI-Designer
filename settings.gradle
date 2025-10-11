@@ -11,6 +11,7 @@ dependencyResolutionManagement {
     def latestFastAdapterRelease = "5.7.0"
     def smali_version = "3.0.3"
     def text_edit = "0.21.0"
+    def compose_version = "1.5.1"
 
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -43,6 +44,13 @@ dependencyResolutionManagement {
             library('preferences', "androidx.datastore:datastore-preferences:1.0.0")
             library('preferences_core', "androidx.datastore:datastore-preferences-core:1.0.0")
             library('swiperefreshlayout', "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+            library('compose-ui', "androidx.compose.ui:ui:${compose_version}")
+            library('compose-material3', "androidx.compose.material3:material3:1.1.2")
+            library('compose-tooling', "androidx.compose.ui:ui-tooling:${compose_version}")
+            library('compose-runtime', "androidx.compose.runtime:runtime:${compose_version}")
+            library('compose-activity', "androidx.activity:activity-compose:1.7.2")
+            library('lifecycle-viewmodel-compose', "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+            library('compose-icons-extended', "androidx.compose.material:material-icons-extended:1.5.1")
         }
 
         google {
@@ -63,6 +71,7 @@ dependencyResolutionManagement {
         }
 
         misc {
+            library('junit', 'junit:junit:4.13.2')
             library('leaks', 'com.squareup.leakcanary:leakcanary-android:2.10')
             library('commons_cli', 'commons-cli:commons-cli:1.5.0')
             library('commons_lang', "org.apache.commons:commons-lang3:3.12.0")

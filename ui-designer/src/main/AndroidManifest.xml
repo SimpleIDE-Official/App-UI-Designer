@@ -33,6 +33,12 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.mcal.uidesigner.ComposeLayoutDesignActivity"
+            android:exported="true"
+            android:label="Compose UI Designer"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
     </application>
 
 </manifest>

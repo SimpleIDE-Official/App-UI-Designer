@@ -557,6 +557,8 @@ public class XmlLayoutDesignActivity extends AppCompatActivity {
             this.inflater.copy();
         } else if (item.getItemId() == R.id.designerMenuShare) {
             this.inflater.share();
+        } else if (item.getItemId() == R.id.designerMenuCompose) {
+            startActivity(new Intent(this, ComposeLayoutDesignActivity.class));
         }
         return false;
     }

@@ -39,6 +39,7 @@ dependencies {
     implementation jetpack.constraint
 
     implementation misc.annotations
+    testImplementation misc.junit
 }
 
 afterEvaluate {
