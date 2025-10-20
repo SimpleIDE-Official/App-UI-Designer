@@ -28,7 +28,7 @@ dependencyResolutionManagement {
         }
 
         jetpack {
-            library('core', 'androidx.core:core-ktx:1.10.0')
+            library('core', 'androidx.core:core-ktx:1.17.0')
             library('appcompat', 'androidx.appcompat:appcompat:1.6.1')
             library('preference', 'androidx.preference:preference-ktx:1.2.0')
             library('mvvm_vm', "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
