@@ -37,7 +37,7 @@ dependencyResolutionManagement {
             library('fragment', "androidx.navigation:navigation-fragment-ktx:2.5.3")
             library('navigation', "androidx.navigation:navigation-ui-ktx:2.5.3")
             library('material', 'com.google.android.material:material:1.9.0')
-            library('constraint', "androidx.constraintlayout:constraintlayout:2.1.4")
+            library('constraint', "androidx.constraintlayout:constraintlayout:2.2.1")
             library('coordinatorlayout', "androidx.coordinatorlayout:coordinatorlayout:1.2.0")
             library('vp2', "androidx.viewpager2:viewpager2:1.0.0")
             library('cardview', "androidx.cardview:cardview:1.0.0")
